@@ -1,40 +1,49 @@
 package main;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Arrays;
 import java.util.Random;
 
 public class Exercises {
 
+    private final Random rand = new Random();
+    private static final Logger LOG = LoggerFactory.getLogger(Exercises.class);
+
     /* Exercise 1
      * Escriba un programa que defina 3 variables con números enteros positivos, y que
      * de esas variables calcule e imprima en pantalla el menor y el mayor.
      */
-    public void minAndMaxNumbers(int first, int second, int third) {
+    public int[] minAndMaxNumbers(int first, int second, int third) {
         if (first < 0 || second < 0 || third < 0) {
-            System.out.println("Numbers must be positive");
-            return;
+            LOG.error("Numbers must be positive");
+            return new int[0];
         }
         int[] numbers = {first, second, third};
         Arrays.sort(numbers);
-        System.out.println("The minimum number is: " + numbers[0]);
-        System.out.println("The maximum number is: " + numbers[2]);
+        LOG.info("The minimum number is: {}",numbers[0]);
+        LOG.info("The maximum number is: {}",numbers[2]);
+
+        return new int[]{numbers[0], numbers[2]};
     }
 
     /* Exercise 2
      * Crear un vector entero con 10 números aleatorios, después leer el vector aquellos
-     * valores que sean menores a 5 eliminarlos del vector y por último imprimir todo el vector.
+     * valores que sean menores a 5 eliminarlos del vector y por último imprimir el vector.
      */
-    public void randomVector() {
-        Random r = new Random();
+    public int[] randomVector() {
         int[] numbers = new int[10];
         for (int i = 0; i < numbers.length; i++) {
-            numbers[i] = r.nextInt();
+            numbers[i] = rand.nextInt();
         }
-        System.out.println("Original array is: " + Arrays.toString(numbers));
+        LOG.info("Original array is: {}",numbers);
 
         int[] numbersWithout5 = Arrays.stream(numbers).filter(n -> n >= 5).toArray();
 
-        System.out.println("New array with numbers greater than 5 is: " + Arrays.toString(numbersWithout5));
+        LOG.info("New array with numbers greater than 5 is: {}",numbersWithout5);
+
+        return numbersWithout5;
     }
 
     /* Exercise 3
@@ -45,7 +54,7 @@ public class Exercises {
      * para ejecutarlo en el método main ponga el nombre del método, los valores e
      * imprima el resultado.
      */
-    public class Calculator {
+    public static class Calculator {
 
         public int sum(int a, int b) {
             return a + b;
@@ -63,7 +72,7 @@ public class Exercises {
             if (b != 0)
                 return a / b;
             else {
-                System.out.println("Can't divide by 0, the answer is an infinite number, in this case, the maximum possible integer in Java");
+                LOG.error("Can't divide by 0, the answer is an infinite number, in this case, the maximum possible integer in Java");
                 return Integer.MAX_VALUE;
             }
         }

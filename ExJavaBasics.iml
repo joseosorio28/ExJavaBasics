@@ -24,5 +24,10 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="junit.jupiter.api" level="project" />
+    <orderEntry type="library" name="hamcrest.library" level="project" />
+    <orderEntry type="library" name="slf4j.api" level="project" />
+    <orderEntry type="library" name="ch.qos.logback.core" level="project" />
+    <orderEntry type="library" name="ch.qos.logback.classic" level="project" />
   </component>
 </module>
