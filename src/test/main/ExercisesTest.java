@@ -66,7 +66,7 @@ class ExercisesTest {
     }
 
     @Test
-    void canCalculatorSubstract() {
+    void canCalculatorSubtract() {
         //Arrange
         int a = 5;
         int b = 10;
